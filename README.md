@@ -1,7 +1,7 @@
 # Comparing Classifiers: Bank Telemarketing Term Deposit Prediction
 
 ## Project Overview
-This repository contains the analysis and machine learning pipeline for **Practical Application 17.1: Comparing Classifiers**. Using the [UCI Bank Marketing Dataset](https://archive.ics.uci.edu/ml/datasets/bank+marketing) (41,188 client records across 17 marketing campaigns from a Portuguese banking institution), this project compares four supervised classification algorithms to predict whether a client will subscribe to a long-term bank term deposit (`y = yes` or `no`):
+This repository contains the analysis and machine learning pipeline for **Practical Application 17.1: Comparing Classifiers**. Using the [UCI Bank Marketing Dataset](https://archive.ics.uci.edu/ml/datasets/bank+marketing), this project compares four supervised classification algorithms to predict whether a client will subscribe to a long-term bank term deposit:
 
 1. **K-Nearest Neighbors (KNN)**
 2. **Logistic Regression**
@@ -13,9 +13,9 @@ This repository contains the analysis and machine learning pipeline for **Practi
 ---
 
 ## Methodology & Data Preparation
-* **Data Cleaning & Leakage Prevention:** Examined implicit missing values (`'unknown'`) and excluded the post-call `duration` feature to ensure the models only train on pre-call attributes known prior to dialing.
-* **Preprocessing Pipeline:** Built a scikit-learn `ColumnTransformer` applying `StandardScaler` to numerical features and `OneHotEncoder(drop='first', handle_unknown='ignore')` to categorical features inside a leak-free `Pipeline`.
-* **Evaluation Metric Justification:** Because the dataset exhibits severe class imbalance (**88.73% non-subscribers vs. 11.27% subscribers**), raw accuracy is misleading (a naive baseline model predicting `'no'` for everyone achieves 88.74% test accuracy while identifying zero subscribers). Models were tuned via Stratified `GridSearchCV` optimizing for **ROC-AUC** and evaluated on **F1-Score and Recall** using `class_weight='balanced'`.
+* **Data Cleaning & Leakage Prevention:** I examined implicit missing values and excluded the post-call `duration` feature to ensure the models only train on pre-call attributes known prior to dialing.
+* **Preprocessing Pipeline:** I built a scikit-learn `ColumnTransformer` applying `StandardScaler` to numerical features and `OneHotEncoder to categorical features inside a leak-free `Pipeline`.
+* **Evaluation Metric Justification:** Because the dataset exhibits severe class imbalance, raw accuracy is not showing the full picture. Models were tuned via Stratified `GridSearchCV` optimizing for **ROC-AUC** and evaluated on **F1-Score and Recall** using `class_weight='balanced'`.
 
 ---
 
